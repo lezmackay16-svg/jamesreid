@@ -41,7 +41,7 @@ dialog{border:1px solid var(--line);border-radius:10px;background:var(--card);co
 dialog::backdrop{background:#0008}
 #toast{position:fixed;left:50%;bottom:calc(1rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.5rem 1rem;border-radius:6px;display:none;z-index:9}
 .empty{color:var(--mut);padding:1rem 0}
-.top{display:none}main{min-width:0}.tabs button{flex:1}.opt input{display:inline-block;width:auto;margin:0}
+.top{display:none}main{min-width:0;margin:0 auto}.tabs button{flex:1}.opt input{display:inline-block;width:auto;margin:0}
 @media(max-width:760px){
 .app{grid-template-columns:1fr}
 .top{display:flex;justify-content:space-between;align-items:center;gap:.6rem;background:var(--side);color:#fff;padding:.6rem 1rem;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
@@ -57,13 +57,14 @@ h2{font-size:1.3rem}.card{padding:.85rem}.stat b{font-size:1.5rem}
 button.pri,button.ghost,button.del{min-height:44px}button.sm{min-height:40px}
 .wrap{overflow:visible}
 table,tbody{display:block}thead{display:none}
-tr{display:grid;grid-template-columns:1fr 1fr;gap:.35rem .8rem;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.7rem;margin-bottom:.7rem}
-td{display:block;border:0;padding:0;white-space:normal;overflow-wrap:anywhere;min-width:0}
-td::before{content:attr(data-l);display:block;color:var(--mut);font-size:.8rem}
+tr{display:block;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.6rem .8rem;margin-bottom:.7rem}
+td{display:flex;justify-content:space-between;align-items:center;gap:.8rem;padding:.4rem 0;border:0;border-top:1px solid var(--line);white-space:normal;overflow-wrap:anywhere;min-width:0;text-align:right}
+td::before{content:attr(data-l);flex:none;color:var(--mut);font-size:.85rem;text-align:left}
 td:empty{display:none}
-td:first-child,td:has(.opt),td[data-l=""]{grid-column:1/-1}
-td:first-child{font-weight:700}
-td[data-l=""]{display:flex;gap:.5rem}td[data-l=""]::before{display:none}td[data-l=""] button{flex:1}
+td:first-child{display:block;border-top:0;padding-top:.1rem;font-weight:700;font-size:1.02rem;text-align:left}td:first-child::before{display:none}
+td:has(.opt){display:block;text-align:left}td:has(.opt)::before{display:block;margin-bottom:.1rem}
+td[data-l=""]{display:flex;justify-content:stretch;gap:.5rem}td[data-l=""]::before{display:none}td[data-l=""] button{flex:1}
+.grid>.card:last-child:nth-child(odd){grid-column:1/-1}
 .opt{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;padding:0 .8rem;margin:.3rem .4rem 0 0;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
 .opt:has(input:checked){border-color:var(--acc);background:var(--hl);font-weight:700}
 .opt input{width:1.2rem;height:1.2rem}
@@ -152,7 +153,8 @@ D.att=D.att.filter(a=>!(a.cid==A.cid&&a.date===A.date)).concat(rec);save();toast
 
 function histRows(){let r=scope();if(F.from)r=r.filter(a=>a.date>=F.from);if(F.to)r=r.filter(a=>a.date<=F.to);if(F.cid)r=r.filter(a=>a.cid==F.cid);if(F.st)r=r.filter(a=>a.status===F.st);
 if(F.q)r=r.filter(a=>sname(a.sid).toLowerCase().includes(F.q.toLowerCase()));return r.sort((a,b)=>a.date<b.date?1:a.date>b.date?-1:0)}
-function histTbl(){const r=histRows();return `<p class="hint">${r.length} record(s)</p>`+tbl(me.role==='student'?['Date','Class','Status']:['Date','Student','Class','Status'],r.slice(0,200).map(a=>me.role==='student'?[a.date,cname(a.cid),tag(a.status)]:[a.date,esc(sname(a.sid)),esc(cname(a.cid)),tag(a.status)]),'No records match these filters.')}
+function histTbl(){const r=histRows(),st=me.role==='student';return `<p class="hint">${r.length} record(s)</p>`+tbl(st?['Date','Class','Status']:['Date','Student','Class','Status',''],r.slice(0,200).map(a=>st?[a.date,cname(a.cid),tag(a.status)]:[a.date,esc(sname(a.sid)),esc(cname(a.cid)),tag(a.status),`<button class="ghost sm" onclick="editStatus(${D.att.indexOf(a)})">Edit status</button>`]),'No records match these filters.')}
+function editStatus(i){const a=D.att[i];if(!a)return;form('Edit status: '+esc(sname(a.sid))+', '+a.date,[{k:'status',l:'Status',o:ST.map(x=>[x,x]),v:a.status}],o=>{a.status=o.status;save();$('#ht').innerHTML=histTbl();toast('Status updated to '+a.status)})}
 function filt(k,v){F[k]=v;$('#ht').innerHTML=histTbl()}
 function hist(){const st=me.role==='student';return `<h2>Attendance history</h2><div class="card"><div class="row"><label>From<input type="date" value="${F.from}" onchange="filt('from',this.value)"></label><label>To<input type="date" value="${F.to}" onchange="filt('to',this.value)"></label>
 ${st?'':`<label>Class${sel('hc',clsOpts(1),F.cid,"filt('cid',this.value)")}</label>`}<label>Status${sel('hs',[['','All']].concat(ST.map(s=>[s,s])),F.st,"filt('st',this.value)")}</label>
