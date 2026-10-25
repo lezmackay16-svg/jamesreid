@@ -2,12 +2,11 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Monitoring System</title>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3f5f7;--card:#fff;--ink:#1b2733;--mut:#5a6876;--line:#d8dee5;--acc:#1f6f5c;--side:#18232e;--P:#1c7a4a;--A:#b3362e;--L:#9a6200;--E:#2c5aa0;--hl:#e8f1ee;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171e;--card:#18222c;--ink:#e6ecf1;--mut:#9aa8b6;--line:#2b3946;--acc:#4fb79d;--side:#0b1117;--P:#58c88a;--A:#ef7b72;--L:#e3a547;--E:#7aa7e6;--hl:#1b2d2a}}
-:root[data-theme="dark"]{--bg:#10171e;--card:#18222c;--ink:#e6ecf1;--mut:#9aa8b6;--line:#2b3946;--acc:#4fb79d;--side:#0b1117;--P:#58c88a;--A:#ef7b72;--L:#e3a547;--E:#7aa7e6;--hl:#1b2d2a}
+:root{--bg:#f4f6f8;--card:#fff;--ink:#14212b;--mut:#5f7080;--line:#e2e8ee;--acc:#0f766e;--onacc:#fff;--side:#0c1a24;--P:#177245;--A:#c0392f;--L:#9a5b00;--E:#2754a8;--hl:#e5f3f0;--sh:0 1px 2px #14212b0d,0 8px 24px -16px #14212b33;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1219;--card:#111d27;--ink:#e7eef4;--mut:#93a5b5;--line:#213240;--acc:#3ccfb4;--onacc:#04201b;--side:#070e14;--P:#52d68f;--A:#f27d74;--L:#f0b44c;--E:#7fb0f5;--hl:#14302c;--sh:0 1px 2px #0006,0 10px 28px -16px #000c}}
+:root[data-theme="dark"]{--bg:#0a1219;--card:#111d27;--ink:#e7eef4;--mut:#93a5b5;--line:#213240;--acc:#3ccfb4;--onacc:#04201b;--side:#070e14;--P:#52d68f;--A:#f27d74;--L:#f0b44c;--E:#7fb0f5;--hl:#14302c;--sh:0 1px 2px #0006,0 10px 28px -16px #000c}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible",system-ui,Segoe UI,Arial,sans-serif}
 h1,h2,h3{margin:0 0 .6rem;line-height:1.2}h2{font-size:1.5rem}h3{font-size:1.1rem}
@@ -42,6 +41,49 @@ dialog::backdrop{background:#0008}
 #toast{position:fixed;left:50%;bottom:calc(1rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.5rem 1rem;border-radius:6px;display:none;z-index:9}
 .empty{color:var(--mut);padding:1rem 0}
 .top{display:none}main{min-width:0;margin:0 auto}.tabs button{flex:1}.opt input{display:inline-block;width:auto;margin:0}
+
+body{font-family:Figtree,system-ui,Segoe UI,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.brand{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;letter-spacing:-.02em}
+h2{font-size:1.7rem;font-weight:700;margin-bottom:1rem}h3{font-weight:700}
+.side{background:linear-gradient(180deg,var(--side),color-mix(in srgb,var(--side) 82%,var(--acc)));padding:1.3rem .85rem}
+.brand,.logo{font-weight:700}
+.brand{display:flex;align-items:center;gap:.65rem;font-size:1.1rem;padding:.2rem .5rem 1.5rem}
+.brand::before,.logo{content:"✓";width:34px;height:34px;border-radius:10px;background:var(--acc);color:var(--onacc);display:grid;place-items:center;flex:none;font-weight:800}
+.side button{border-radius:10px;font-weight:500;transition:background .15s,color .15s}
+.side button:hover{background:#ffffff14;color:#fff}
+.side button.on{background:#ffffff1f;color:#fff;box-shadow:inset 3px 0 0 var(--acc)}
+main{padding:2rem 2rem 3rem}
+.card{border-radius:14px;box-shadow:var(--sh);padding:1.25rem}
+.stat b{font-family:"Bricolage Grotesque",Figtree,sans-serif;font-size:2.1rem;font-weight:700;letter-spacing:-.03em}
+.stat span{font-weight:500}
+input,select{border-radius:10px;padding:.62rem .8rem;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus{outline:0;border-color:var(--acc);box-shadow:0 0 0 4px color-mix(in srgb,var(--acc) 22%,transparent)}
+label{font-weight:600}
+button.pri,button.ghost,button.del{border-radius:10px;font-weight:700;padding:.6rem 1.1rem;transition:background .15s,transform .15s,opacity .15s}
+button.sm{padding:.28rem .7rem;font-size:.85rem}
+button.pri{color:var(--onacc)}button.pri:hover{filter:brightness(1.08);transform:translateY(-1px)}
+button.ghost:hover{background:var(--hl)}button.del:hover{background:color-mix(in srgb,var(--A) 10%,transparent)}
+button:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.tabs{background:var(--bg);border:1px solid var(--line);padding:.3rem;border-radius:12px}
+.tabs button{border-color:transparent;border-radius:9px}.tabs .ghost{color:var(--mut)}.tabs .ghost:hover{background:none;color:var(--ink)}
+th{font-size:.82rem}tbody tr:hover{background:var(--hl)}
+.tag{border:0;background:color-mix(in srgb,currentColor 13%,transparent);padding:.12rem .7rem}
+.bars i{background:var(--acc);border-radius:8px 8px 3px 3px;opacity:.9}
+dialog{border:0;border-radius:18px;padding:1.4rem;box-shadow:0 30px 80px -20px #000a}
+dialog::backdrop{background:#0a1220b0;backdrop-filter:blur(4px)}
+#toast{border-radius:99px;padding:.65rem 1.2rem;font-weight:600;box-shadow:var(--sh)}
+.auth{background:radial-gradient(color-mix(in srgb,var(--ink) 9%,transparent) 1px,transparent 1.4px) 0 0/22px 22px,var(--bg)}
+.auth>.card{max-width:420px;padding:2rem 1.8rem;border-radius:22px;box-shadow:0 30px 70px -30px #14212b55}
+.auth .logo{width:52px;height:52px;border-radius:16px;font-size:1.5rem;margin:0 auto .9rem}
+.auth h2{font-size:1.5rem;margin-bottom:.3rem}
+.sub{text-align:center;color:var(--mut);margin:0 0 1.4rem;overflow-wrap:anywhere}.sub b{color:var(--ink)}
+.lnk{all:unset;cursor:pointer;color:var(--acc);font-weight:700;font-size:.9rem}.lnk:hover{text-decoration:underline}.lnk:focus-visible{outline:3px solid var(--E);outline-offset:2px}
+.lnk:disabled{color:var(--mut);cursor:default;text-decoration:none}
+.links{display:flex;justify-content:space-between;gap:1rem;margin-top:1.1rem}
+.otp{display:flex;gap:.5rem;margin:.2rem 0 .8rem}
+.otp input{flex:1;min-width:0;height:58px;padding:0;text-align:center;font:700 1.55rem "Bricolage Grotesque",Figtree,sans-serif;border-radius:12px}
+.otp input:not(:placeholder-shown){border-color:var(--acc);background:var(--hl)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 @media(max-width:760px){
 .app{grid-template-columns:1fr}
 .top{display:flex;justify-content:space-between;align-items:center;gap:.6rem;background:var(--side);color:#fff;padding:.6rem 1rem;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
@@ -74,6 +116,7 @@ dialog{max-height:88vh;overflow:auto}
 }
 </style></head>
 <body><div id="root"></div><div id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
 <script>
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const uid=()=>Date.now()*1000+Math.floor(Math.random()*1000);
@@ -109,23 +152,67 @@ const tbl=(h,rows,empty)=>rows.length?`<div class="wrap"><table><thead><tr>${h.m
 const clsOpts=(all)=>(all?[['','All classes']]:[]).concat(myClasses().map(c=>[c.id,c.name]));
 const sel=(id,o,v,fn)=>`<select id="${id}" onchange="${fn}">${o.map(x=>`<option value="${esc(x[0])}"${x[0]==v?' selected':''}>${esc(x[1])}</option>`).join('')}</select>`;
 
-/* ---------- auth ---------- */
-function authView(){const reg=mode==='reg';return `<div class="auth"><div class="card"><h2>Attendance Monitoring System</h2>
-<div class="tabs"><button class="${reg?'ghost':'pri'}" onclick="mode='login';err='';render()">Log in</button><button class="${reg?'pri':'ghost'}" onclick="mode='reg';err='';render()">Register</button></div>
-<form onsubmit="${reg?'doReg(event)':'doLogin(event)'}">${reg?`<label>Full name<input name="name" required></label>`:''}
-<label>Email<input name="email" type="email" required></label><label>Password<input name="pass" type="password" minlength="6" required></label>
+/* ---------- auth + OTP ---------- */
+const EJS={service:'service_3i1vdom',template:'template_bj0eivs',key:'YklWneFUbS5srtLoy'};
+const OTP_TTL=300,RESEND=30,MAX_TRIES=5,SKIP_OTP_FOR_DEMO=true; /* set SKIP_OTP_FOR_DEMO=false when you go live */
+const DEMO=['admin@school.ph','teacher@school.ph','student@school.ph'];
+let otp=null,busy=false;
+try{emailjs.init({publicKey:EJS.key})}catch(e){}
+const genCode=()=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return String(a[0]%1e6).padStart(6,'0')};
+const mask=e=>e.replace(/^(.{1,2}).*(@.*)$/,'$1•••$2');
+const go=m=>{mode=m;err='';render()};
+const TXT={login:['Welcome back','Log in to your account'],reg:['Create your account','We will email you a code to verify it'],forgot:['Forgot password?','Enter your email and we will send you a code'],reset:['Choose a new password','Use at least 6 characters'],otp:['Check your email','']};
+function authView(){const m=mode,reg=m==='reg',t=TXT[m],sub=m==='otp'&&otp?`We sent a 6-digit code to <b>${esc(mask(otp.email))}</b>`:esc(t[1]);
+const btn=(x,y)=>`<button class="pri" style="width:100%"${busy?' disabled':''}>${busy?'Sending code…':x}</button>`;
+let body='';
+if(m==='login'||m==='reg')body=`<div class="tabs"><button class="${reg?'ghost':'pri'}" onclick="go('login')">Log in</button><button class="${reg?'pri':'ghost'}" onclick="go('reg')">Register</button></div>
+<form onsubmit="${reg?'doReg(event)':'doLogin(event)'}">${reg?`<label>Full name<input name="name" autocomplete="name" required></label>`:''}
+<label>Email<input name="email" type="email" autocomplete="email" required></label><label>Password<input name="pass" type="password" minlength="6" autocomplete="${reg?'new-password':'current-password'}" required></label>
 ${reg?`<label>Account type<select name="role" onchange="document.getElementById('sn').style.display=this.value==='student'?'block':'none'"><option value="teacher">Teacher</option><option value="student">Student</option></select></label><label id="sn" style="display:none">Student number<input name="no" placeholder="e.g. 2024-1001"></label>`:''}
-<div class="err" role="alert">${esc(err)}</div><button class="pri" style="width:100%">${reg?'Create account':'Log in'}</button></form>
-</div></div>`}
+<div class="err" role="alert">${esc(err)}</div>${btn(reg?'Send verification code':'Log in')}</form>${reg?'':`<div class="links"><button class="lnk" onclick="go('forgot')">Forgot password?</button></div>`}`;
+else if(m==='forgot')body=`<form onsubmit="doForgot(event)"><label>Email<input name="email" type="email" autocomplete="email" required></label><div class="err" role="alert">${esc(err)}</div>${btn('Send code')}</form><div class="links"><button class="lnk" onclick="go('login')">Back to log in</button></div>`;
+else if(m==='otp')body=`<div class="otp" oninput="otpIn(event)" onkeydown="otpKey(event)">${[0,1,2,3,4,5].map(i=>`<input inputmode="numeric" placeholder=" " autocomplete="${i?'off':'one-time-code'}" aria-label="Digit ${i+1} of 6">`).join('')}</div>
+<div class="err" role="alert">${esc(err)}</div><button class="pri" style="width:100%" onclick="otpCheck(1)">Verify code</button>
+<div class="links"><button class="lnk" onclick="otp=null;go('login')">Use a different email</button><button class="lnk" id="rs" onclick="resend()">Resend code</button></div><p class="hint" style="text-align:center;margin:.9rem 0 0">The code expires in ${OTP_TTL/60} minutes. Check your spam folder if it does not arrive.</p>`;
+else body=`<form onsubmit="doReset(event)"><label>New password<input name="p1" type="password" minlength="6" autocomplete="new-password" required></label><label>Confirm password<input name="p2" type="password" minlength="6" autocomplete="new-password" required></label><div class="err" role="alert">${esc(err)}</div><button class="pri" style="width:100%">Save new password</button></form>`;
+return `<div class="auth"><div class="card"><div class="logo" aria-hidden="true">✓</div><h2 style="text-align:center">${t[0]}</h2><p class="sub">${sub}</p>${body}</div></div>`}
+async function sendOtp(p,email,name,data){if(busy)return;busy=true;err='';render();const code=genCode();
+try{await emailjs.send(EJS.service,EJS.template,{to_email:email,email:email,user_email:email,to_name:name,name:name,otp:code,passcode:code,code:code,app_name:'Attendance Monitoring System',minutes:OTP_TTL/60,time:new Date(Date.now()+OTP_TTL*1e3).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});
+otp={p,email,name,data,code,exp:Date.now()+OTP_TTL*1e3,tries:0,next:Date.now()+RESEND*1e3};mode='otp'}
+catch(e){console.error(e);const why=(e&&(e.text||e.message))||String(e);err='We could not send the code. Reason: '+(typeof emailjs==='undefined'?'the EmailJS library did not load (blocked or offline).':why+(e&&e.status?' (code '+e.status+')':''))}
+busy=false;render()}
+const resend=()=>{if(otp&&Date.now()>=otp.next)sendOtp(otp.p,otp.email,otp.name,otp.data)};
+const boxes=()=>[...document.querySelectorAll('.otp input')];
+function otpIn(e){const b=boxes(),i=b.indexOf(e.target),d=e.target.value.replace(/\D/g,'');
+if(d.length>1){d.slice(0,6-i).split('').forEach((c,k)=>b[i+k].value=c);b[Math.min(i+d.length,5)].focus()}else{e.target.value=d;if(d&&i<5)b[i+1].focus()}otpCheck()}
+function otpKey(e){const b=boxes(),i=b.indexOf(e.target);if(e.key==='Backspace'&&!e.target.value&&i>0){b[i-1].value='';b[i-1].focus()}
+if(e.key==='ArrowLeft'&&i>0)b[i-1].focus();if(e.key==='ArrowRight'&&i<5)b[i+1].focus()}
+function otpCheck(manual){const v=boxes().map(x=>x.value).join('');if(v.length===6)verifyOtp(v);else if(manual){err='Enter all 6 digits.';render()}}
+function verifyOtp(v){if(!otp)return;
+if(Date.now()>otp.exp){err='That code has expired. Request a new one.';return render()}
+if(v!==otp.code){otp.tries++;if(otp.tries>=MAX_TRIES){otp=null;mode='login';err='Too many wrong codes. Please start again.';return render()}err='Incorrect code. '+(MAX_TRIES-otp.tries)+' attempt(s) left.';return render()}
+const o=otp;if(o.p==='login'){otp=null;return setMe(o.data)}
+if(o.p==='reg'){otp=null;D.users.push(o.data);save();return setMe(o.data)}
+go('reset')}
+function afterAuth(){clearInterval(afterAuth.t);if(mode!=='otp'||!otp)return;const f=boxes()[0];f&&f.focus();
+const tick=()=>{const b=$('#rs');if(!b||!otp){clearInterval(afterAuth.t);return}const s=Math.ceil((otp.next-Date.now())/1e3);b.disabled=s>0;b.textContent=s>0?'Resend in '+s+'s':'Resend code'};tick();afterAuth.t=setInterval(tick,1e3)}
 function doLogin(e){e.preventDefault();const f=Object.fromEntries(new FormData(e.target));const u=D.users.find(u=>u.email.toLowerCase()===f.email.toLowerCase()&&u.pass===f.pass);
-if(!u){err='Email or password is incorrect. Check both and try again.';return render()}setMe(u)}
+if(!u){err='Email or password is incorrect. Check both and try again.';return render()}
+if(SKIP_OTP_FOR_DEMO&&DEMO.includes(u.email.toLowerCase()))return setMe(u);sendOtp('login',u.email,u.name,u)}
 function doReg(e){e.preventDefault();const f=Object.fromEntries(new FormData(e.target));
 if(D.users.some(u=>u.email.toLowerCase()===f.email.toLowerCase())){err='That email is already registered. Log in instead.';return render()}
-const u={id:uid(),name:f.name,email:f.email,pass:f.pass,role:f.role};
+const u={id:uid(),name:f.name,email:f.email.trim(),pass:f.pass,role:f.role};
 if(f.role==='student'){const s=D.students.find(s=>s.no===(f.no||'').trim());if(!s){err='No student record matches that number. Ask your admin to add you first.';return render()}u.studentId=s.id}
-D.users.push(u);save();setMe(u)}
+sendOtp('reg',u.email,u.name,u)}
+function doForgot(e){e.preventDefault();const em=new FormData(e.target).get('email').trim(),u=D.users.find(u=>u.email.toLowerCase()===em.toLowerCase());
+if(!u){err='No account uses that email.';return render()}
+if(DEMO.includes(u.email.toLowerCase())){err='Demo accounts cannot reset their password.';return render()}
+sendOtp('forgot',u.email,u.name,u)}
+function doReset(e){e.preventDefault();const f=Object.fromEntries(new FormData(e.target));
+if(f.p1!==f.p2){err='The two passwords do not match.';return render()}
+const u=D.users.find(x=>x.id==otp.data.id);if(!u){otp=null;return go('login')}u.pass=f.p1;save();otp=null;mode='login';err='';render();toast('Password updated. Log in with your new password.')}
 function setMe(u){me=u;page='dash';err='';try{sessionStorage.setItem('sams_me',u.id)}catch(e){}render()}
-function logout(){me=null;mode='login';try{sessionStorage.removeItem('sams_me')}catch(e){}render()}
+function logout(){me=null;otp=null;mode='login';try{sessionStorage.removeItem('sams_me')}catch(e){}render()}
 
 /* ---------- views ---------- */
 function dash(){const r=scope(),c=cnt(r);
@@ -198,7 +285,7 @@ function savePro(e){e.preventDefault();const f=Object.fromEntries(new FormData(e
 me.name=f.name.trim();me.email=f.email.trim();if(f.pass)me.pass=f.pass;save();toast('Profile saved');render()}
 
 const V={dash,att,hist,rep,stu,cls,usr,set,pro};
-function render(){const r=$('#root');if(!me){r.innerHTML=authView();return}
+function render(){const r=$('#root');if(!me){r.innerHTML=authView();afterAuth();return}
 if(!NAV[me.role].includes(page))page='dash';
 document.body.classList.remove('nav');r.innerHTML=`<div class="app"><header class="top"><b>${esc(D.settings.school)}</b><button onclick="document.body.classList.toggle('nav')" aria-label="Menu">☰ Menu</button></header><nav class="side" aria-label="Main"><div class="brand">${esc(D.settings.school)}</div>${NAV[me.role].map(p=>`<button class="${p===page?'on':''}" onclick="page='${p}';render()">${NM[p]}</button>`).join('')}<div class="who">${esc(me.name)} (${me.role})<br><button onclick="logout()" style="color:#fff;text-decoration:underline;padding:.3rem 0">Log out</button></div></nav><main>${V[page]()}</main></div>`}
 render();
